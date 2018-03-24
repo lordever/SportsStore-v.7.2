@@ -4,6 +4,10 @@ import {Product} from "../model/product.model";
 import {Cart} from "../model/cart.model";
 import {Router} from "@angular/router";
 
+class SomeInt{
+  field: string;
+}
+
 @Component({
   selector: 'store',
   moduleId: module.id,
@@ -16,12 +20,20 @@ export class StoreComponent{
 
   constructor(private productRepository: ProductRepository,
               private cart: Cart,
-              private router: Router){}
+              private router: Router){
+      let some: SomeInt;
+      some = this.getInt();
+  }
 
   get products(): Product[]{
     let pageIndex = (this.selectedPage - 1) * this.productsPerPage;
     return this.productRepository.getProducts(this.selectedCategory)
       .slice(pageIndex, pageIndex + this.productsPerPage);
+  }
+
+  getInt(): SomeInt{
+    let someInt: SomeInt;
+    return someInt;
   }
 
   get categories(): string[]{
